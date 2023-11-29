@@ -1,30 +1,30 @@
 pipeline {
     agent any
     stages {
-        stage('Delete Docker Containers and Images') {
-            steps {
-                script {
-                    // Check if Docker is installed
-                    def dockerInstalled = sh(script: 'docker --version', returnStatus: true)
+        // stage('Delete Docker Containers and Images') {
+        //     steps {
+        //         script {
+        //             // Check if Docker is installed
+        //             def dockerInstalled = sh(script: 'docker --version', returnStatus: true)
 
-                    if (dockerInstalled == 0) {
-                        // Docker is installed, proceed with stopping containers and deleting images
+        //             if (dockerInstalled == 0) {
+        //                 // Docker is installed, proceed with stopping containers and deleting images
                         
-                        // Stop all running containers
-                        sh 'docker stop $(docker ps -aq)'
+        //                 // Stop all running containers
+        //                 sh 'docker stop $(docker ps -aq)'
 
-                        // Remove all stopped containers
-                        sh 'docker rm $(docker ps -aq)' 
+        //                 // Remove all stopped containers
+        //                 sh 'docker rm $(docker ps -aq)' 
 
-                        // Remove all Docker images
-                        sh 'docker system prune -fa'                        
-                    } else {
-                        // Displaying Message 
-                        echo 'Docker is not installed on this agent. Skipping container and image operations.'
-                    }
-                }
-            }
-        }
+        //                 // Remove all Docker images
+        //                 sh 'docker system prune -fa'                        
+        //             } else {
+        //                 // Displaying Message 
+        //                 echo 'Docker is not installed on this agent. Skipping container and image operations.'
+        //             }
+        //         }
+        //     }
+        // }
         stage('Checkout') {
             steps {
                 script {
